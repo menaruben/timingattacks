@@ -4,7 +4,7 @@ using System.Text;
 public sealed class Attacker {
     private static readonly int ITERATIONS_PER_CHAR = 40_000_000;
 
-    public string findSecret(Account account, int secretLength, char[] charset) {
+    public string FindSecret(Account account, int secretLength, char[] charset) {
         /* initialize guess with secretLength amount ofdashes since we
         assume that we already know the length of the secret */
         var secret = new StringBuilder(new string('-', secretLength));
@@ -12,7 +12,7 @@ public sealed class Attacker {
         {
             /* find next character by measuring the time it takes to login
             and taking the character with the highest time */
-            var found = findNextChar(account, secret.ToString(), i, charset);
+            var found = FindNextChar(account, secret.ToString(), i, charset);
 
             // replace character at current index with found character
             secret = secret.Replace('-', found, i, 1);
@@ -21,7 +21,7 @@ public sealed class Attacker {
         return secret.ToString();
     }
 
-    private char findNextChar(Account a, string current, int index, char[] charset) {
+    private char FindNextChar(Account a, string current, int index, char[] charset) {
         // create a dictionary to store the time it takes to login with each character
         var charTimes = new Dictionary<char, long>();
         foreach (var ch in charset) {

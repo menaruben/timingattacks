@@ -6,7 +6,7 @@ var SECRET = "816649";
 var unsafeAccount = new Account(SECRET, CompareEarlyExit);
 
 var attacker = new Attacker();
-var unsafeResult = attacker.findSecret(unsafeAccount, SECRET.Length, charset);
+var unsafeResult = attacker.FindSecret(unsafeAccount, SECRET.Length, charset);
 Console.WriteLine(unsafeResult);
 Console.WriteLine($"Attacker can login: {unsafeAccount.Login(unsafeResult)}");
 // Current secret: 8-----
@@ -19,7 +19,7 @@ Console.WriteLine($"Attacker can login: {unsafeAccount.Login(unsafeResult)}");
 // Attacker can login: True
 
 var safeAccount = new Account(SECRET, CompareFullscan);
-var safeResult = attacker.findSecret(safeAccount, SECRET.Length, charset);
+var safeResult = attacker.FindSecret(safeAccount, SECRET.Length, charset);
 Console.WriteLine(safeResult);
 Console.WriteLine($"Attacker can login: {safeAccount.Login(safeResult)}");
 // Current secret: 0-----
@@ -32,7 +32,7 @@ Console.WriteLine($"Attacker can login: {safeAccount.Login(safeResult)}");
 // Attacker can login: False
 
 var opensslAccount = new Account(SECRET, CompareOpenssl);
-var opensslResult = attacker.findSecret(opensslAccount, SECRET.Length, charset);
+var opensslResult = attacker.FindSecret(opensslAccount, SECRET.Length, charset);
 Console.WriteLine(opensslResult);
 Console.WriteLine($"Attacker can login: {opensslAccount.Login(opensslResult)}");
 // Current secret: 0-----
